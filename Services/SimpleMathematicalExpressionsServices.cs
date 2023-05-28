@@ -42,9 +42,9 @@ namespace ExerciseBPO.Services
             return CheckInfinity((float)Math.Pow(baseOfDegree, exponent));
         }
 
-        public Result RootingByBase(float RadicalExpression, float rootDegree)
+        public Result RootingByBase(float radicalExpression, float rootDegree)
         {
-            return CheckInfinity((float)Math.Pow(RadicalExpression, 1 / rootDegree));
+            return CheckInfinity((float)Math.Pow(radicalExpression, 1 / rootDegree));
         }
 
         private Result CheckInfinity(float result)

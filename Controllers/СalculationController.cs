@@ -34,7 +34,6 @@ namespace ExerciseBPO.Controllers
         public ActionResult<Result> Multiplication([FromQuery] float firstMultiplier, float secondMultiplier)
         {
             return _simpleMathematicalExpressions.Multiplication(firstMultiplier, secondMultiplier);
-
         }
 
         [HttpGet("api/calc/division")]
@@ -70,8 +69,6 @@ namespace ExerciseBPO.Controllers
                     MessageException = "Cтрока имеет не поддерживаемые выражения"
                 };
             }
-
         }
-
     }
 }
