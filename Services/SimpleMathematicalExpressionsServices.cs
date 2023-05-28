@@ -7,61 +7,57 @@ namespace ExerciseBPO.Services
     {
         public Result Addition(float firstSummand, float secondSummand)
         {
-            return CheckInfinity(firstSummand + secondSummand);
+            return new Result(firstSummand + secondSummand);
         }
 
         public Result Subtraction(float subtrahend, float subtractor)
         {
-            return CheckInfinity(subtrahend - subtractor);
+            return new Result(subtrahend - subtractor);
         }
 
         public Result Multiplication(float firstMultiplier, float secondMultiplier)
         {
-            return CheckInfinity(firstMultiplier * secondMultiplier);
+            return new Result(firstMultiplier * secondMultiplier);
         }
 
-        public Result Division(float dividend, float divisor)
+        public Result Division(float dividend, float divider)
         {
-            if (divisor == 0)
-            {
-                return new Result()
-                {
-                    StatusCode = Status.DivideByZeroException,
-                    MessageException = "Деление на ноль - невозможно"
-                };
-            }
-
-            return new Result()
-            {
-                CalculationResult = dividend / divisor
-            };
-        }
-
-        public Result Exponentiation(float baseOfDegree, float exponent)
-        {
-            return CheckInfinity((float)Math.Pow(baseOfDegree, exponent));
-        }
-
-        public Result RootingByBase(float radicalExpression, float rootDegree)
-        {
-            return CheckInfinity((float)Math.Pow(radicalExpression, 1 / rootDegree));
-        }
-
-        private Result CheckInfinity(float result)
-        {
-            if (result == float.PositiveInfinity || result == float.NegativeInfinity)
+            if (divider == 0)
             {
                 return new Result()
                 {
                     StatusCode = Status.OverflowException,
-                    MessageException = "Результат вычислений - бесконечность для значения float"
+                    MessageException = "Деление на ноль невозможно"
                 };
             }
-
-            return new Result()
-            {
-                CalculationResult = result
-            };
+            return new Result(dividend / divider);
         }
+
+        public Result Exponentiation(float baseOfDegree, float exponent)
+        {
+            return new Result((float)Math.Pow(baseOfDegree, exponent));
+        }
+
+        public Result RootingByBase(float radicalExpression, float rootDegree)
+        {
+            return new Result((float)Math.Pow(radicalExpression, 1 / rootDegree));
+        }
+
+        //private static Result CheckInfinity(float result)
+        //{
+        //    if (float.IsInfinity(result))
+        //    {
+        //        return new Result()
+        //        {
+        //            StatusCode = Status.OverflowException,
+        //            MessageException = "Результат вычислений - бесконечность для значения float"
+        //        };
+        //    }
+
+        //    return new Result()
+        //    {
+        //        CalculationResult = result
+        //    };
+        //}
     }
 }

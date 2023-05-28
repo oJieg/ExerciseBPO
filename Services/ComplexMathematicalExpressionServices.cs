@@ -8,28 +8,21 @@ namespace ExerciseBPO.Services
     {
         public Result ComplexExpression(string expression)
         {
-            float result = (float)expression.EvalNumerical();
-            if (result == float.PositiveInfinity || result == float.NegativeInfinity)
+            float result;
+            try
             {
-                return new Result()
-                {
-                    StatusCode = Status.OverflowException,
-                    MessageException = "Результат вычислений - бесконечность для значения float"
-                };
+                result = (float)expression.EvalNumerical();
             }
-            if (float.IsNaN(result))
+            catch
             {
                 return new Result()
                 {
-                    StatusCode = Status.DivideByZeroException,
-                    MessageException = "Деление на ноль - невозможно"
+                    StatusCode = Status.InvalidInputString,
+                    MessageException = "Строка имеет не поддерживаемые выражения"
                 };
             }
 
-            return new Result()
-            {
-                CalculationResult = result
-            };
+            return new Result(result);
         }
     }
 }

@@ -14,8 +14,8 @@ namespace ExerciseBPO
             builder.Services.AddSingleton<IComplexMathematicalExpressionServices, ComplexMathematicalExpressionServices>();
 
             builder.Services.AddControllers()
-                .AddJsonOptions(jsonOpions =>
-                jsonOpions.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals);
+                .AddJsonOptions(jsonOptions =>
+                jsonOptions.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals);
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {

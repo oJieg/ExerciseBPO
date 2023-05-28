@@ -5,10 +5,12 @@ using ExerciseBPO.Models;
 namespace ExerciseBPO.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class СalculationController : ControllerBase
     {
         private readonly ISimpleMathematicalExpressionsServices _simpleMathematicalExpressions;
         private readonly IComplexMathematicalExpressionServices _complexMathematicalExpression;
+
 
         public СalculationController(
             ISimpleMathematicalExpressionsServices simpleMathematicalExpressions,
@@ -18,31 +20,31 @@ namespace ExerciseBPO.Controllers
             _complexMathematicalExpression = complexMathematicalExpression;
         }
 
-        [HttpGet("api/calc/addition")]
+        [HttpGet("addition")]
         public ActionResult<Result> Addition([FromQuery] float firstSummand, float secondSummand)
         {
             return _simpleMathematicalExpressions.Addition(firstSummand, secondSummand);
         }
 
-        [HttpGet("api/calc/subtraction")]
+        [HttpGet("subtraction")]
         public ActionResult<Result> Subtraction([FromQuery] float subtrahend, float subtractor)
         {
             return _simpleMathematicalExpressions.Subtraction(subtrahend, subtractor);
         }
 
-        [HttpGet("api/calc/multiplication")]
+        [HttpGet("multiplication")]
         public ActionResult<Result> Multiplication([FromQuery] float firstMultiplier, float secondMultiplier)
         {
             return _simpleMathematicalExpressions.Multiplication(firstMultiplier, secondMultiplier);
         }
 
-        [HttpGet("api/calc/division")]
-        public ActionResult<Result> Division([FromQuery] float dividend, float divisor)
+        [HttpGet("division")]
+        public ActionResult<Result> Division([FromQuery] float dividend, float divider)
         {
-            return _simpleMathematicalExpressions.Division(dividend, divisor);
+            return _simpleMathematicalExpressions.Division(dividend, divider);
         }
 
-        [HttpGet("api/calc/exponentiation")]
+        [HttpGet("exponentiation")]
         public ActionResult<Result> Exponentiation([FromQuery] float baseOfDegree, float exponent)
         {
             return _simpleMathematicalExpressions.Exponentiation(baseOfDegree, exponent);
@@ -54,21 +56,10 @@ namespace ExerciseBPO.Controllers
             return _simpleMathematicalExpressions.RootingByBase(radicalExpression, rootDegree);
         }
 
-        [HttpGet("api/calc/complex-expression")]
+        [HttpGet("complex-expression")]
         public ActionResult<Result> ComplexExpression([FromQuery] string expression)
         {
-            try
-            {
-                return _complexMathematicalExpression.ComplexExpression(expression);
-            }
-            catch
-            {
-                return new Result()
-                {
-                    StatusCode = Status.InvalidInputString,
-                    MessageException = "Cтрока имеет не поддерживаемые выражения"
-                };
-            }
+            return _complexMathematicalExpression.ComplexExpression(expression);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace ExerciseBPO.Interfaces
         public Result Multiplication(float firstMultiplier, float secondMultiplier);
         public Result Division(float dividend, float divisor);
         public Result Exponentiation(float baseOfDegree, float exponent);
-        public Result RootingByBase(float RadicalExpression, float rootDegree);
+        public Result RootingByBase(float radicalExpression, float rootDegree);
     }
 }
