@@ -26,7 +26,7 @@ namespace ExerciseBPO.Services
             {
                 return new Result()
                 {
-                    StatusCode = Status.OverflowException,
+                    StatusCode = Status.DivideByZeroException,
                     MessageException = "Деление на ноль невозможно"
                 };
             }
@@ -42,22 +42,5 @@ namespace ExerciseBPO.Services
         {
             return new Result((float)Math.Pow(radicalExpression, 1 / rootDegree));
         }
-
-        //private static Result CheckInfinity(float result)
-        //{
-        //    if (float.IsInfinity(result))
-        //    {
-        //        return new Result()
-        //        {
-        //            StatusCode = Status.OverflowException,
-        //            MessageException = "Результат вычислений - бесконечность для значения float"
-        //        };
-        //    }
-
-        //    return new Result()
-        //    {
-        //        CalculationResult = result
-        //    };
-        //}
     }
 }

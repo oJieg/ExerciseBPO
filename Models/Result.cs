@@ -15,7 +15,7 @@
             }
             else if (float.IsNaN(result))
             {
-                StatusCode = Status.OverflowException;
+                StatusCode = Status.DivideByZeroException;
                 MessageException = "Деление на ноль невозможно";
             }
             else
